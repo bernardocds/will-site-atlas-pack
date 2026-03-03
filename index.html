@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atlas Pack Solutions | Industrial B2B Packaging Logistics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Oswald:wght@500;700&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#E48E2E", // Atlas Orange
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#0F1115",
+                        secondary: "#1A1D23",
+                        // Custom orange shades for gradients/hover states based on #E48E2E
+                        orange: {
+                            50: '#FDF6EC',
+                            100: '#FAEAD3',
+                            200: '#F5D3A6',
+                            300: '#EFBD7A',
+                            400: '#E9A64E',
+                            500: '#E48E2E',
+                            600: '#C57217',
+                            700: '#945611',
+                            800: '#63390B',
+                            900: '#321D06',
+                        },
+                        // Very subtle grays for section alternation
+                        "section-gray": "#F8FAFC",
+                        "section-white": "#FFFFFF",
+                        "section-divider": "#F1F5F9",
+                    },
+                    fontFamily: {
+                        display: ["Oswald", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                        nav: ["Sora", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1.5rem",
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 20px 25px -5px rgba(0, 0, 0, 0.03), 0 30px 50px -10px rgba(0, 0, 0, 0.1)',
+                        'inner-light': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        :root {
+            --soft-shadow: 0 12px 26px -22px rgba(15, 17, 21, 0.42);
+            --soft-shadow-hover: 0 24px 42px -28px rgba(15, 17, 21, 0.45);
+        }
+        .red-line-accent {
+            position: relative;
+        }
+        .red-line-accent::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #E48E2E;}
+        .hero-gradient {
+            background: linear-gradient(rgba(15, 17, 21, 0.85), rgba(15, 17, 21, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .interactive-hover {
+            transition: transform 0.28s ease, box-shadow 0.28s ease, color 0.25s ease, background-color 0.25s ease;
+        }
+        button,
+        .group,
+        details.group,
+        summary {
+            transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.32s ease, border-color 0.24s ease, background-color 0.24s ease, color 0.24s ease;
+        }
+        button:hover {
+            box-shadow: var(--soft-shadow-hover);
+        }
+        button:active {
+            transform: translateY(0) scale(0.985);
+        }
+        .hover\:scale-105:hover {
+            transform: scale(1.02);
+        }
+        .hover\:scale-110:hover {
+            transform: scale(1.03);
+        }
+        .hover\:-translate-y-4:hover {
+            transform: translateY(-0.45rem);
+        }
+        [class*="rounded-[2.5rem]"][class*="bg-white"] {
+            box-shadow: var(--soft-shadow);
+        }
+        [class*="rounded-[2.5rem]"][class*="bg-white"]:hover,
+        details.group[open] {
+            box-shadow: var(--soft-shadow-hover);
+        }
+        .atlas-hero-logo {
+            opacity: 0.23;
+            filter: grayscale(1) saturate(0) brightness(1.18) contrast(0.92);
+            mix-blend-mode: multiply;
+        }
+        .hero-product-stack {
+            position: relative;
+            isolation: isolate;
+            padding-top: 0.6rem;
+            padding-left: 0.6rem;
+        }
+        .hero-product-bw {
+            position: absolute;
+            inset: 0;
+            transform: translate(-20px, -18px) rotate(-2.8deg);
+            filter: grayscale(1) contrast(1.05) brightness(1.08);
+            opacity: 0.42;
+            z-index: 0;
+        }
+        .hero-product-color {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-product-bw img,
+        .hero-product-color img {
+            width: 100%;
+            border-radius: 2.5rem;
+            border: 8px solid #ffffff;
+            box-shadow: 0 42px 86px -28px rgba(15, 17, 21, 0.34);
+        }
+        .dark .hero-product-bw img,
+        .dark .hero-product-color img {
+            border-color: #1f2937;
+        }
+        .kraft-section {
+            position: relative;
+            overflow: hidden;
+            background-color: #cfaa79;
+            background-image:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.055)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .34 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"),
+                radial-gradient(rgba(71, 46, 21, 0.3) 1.05px, transparent 1.35px),
+                radial-gradient(rgba(56, 37, 18, 0.24) 0.95px, transparent 1.25px),
+                radial-gradient(rgba(255, 255, 255, 0.17) 0.75px, transparent 1.05px),
+                radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.18) 0, rgba(255, 255, 255, 0) 42%),
+                radial-gradient(circle at 78% 4%, rgba(97, 68, 32, 0.2) 0, rgba(97, 68, 32, 0) 38%);
+            background-size: auto, 210px 210px, 145px 145px, 215px 215px, 180px 180px, auto, auto;
+            background-position: center, 0 0, 0 0, 30px 40px, 75px 16px, center, center;
+            background-blend-mode: normal, multiply, multiply, multiply, screen, normal, normal;
+        }
+        .kraft-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                repeating-linear-gradient(18deg, rgba(92, 62, 31, 0.08) 0 1px, transparent 1px 8px),
+                repeating-linear-gradient(-34deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 10px),
+                radial-gradient(rgba(42, 26, 10, 0.25) 0.65px, transparent 0.95px);
+            background-size: auto, auto, 120px 120px;
+            background-position: center, center, 24px 20px;
+            opacity: 0.45;
+            mix-blend-mode: multiply;
+        }
+        .kraft-section::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 0.6px, transparent 0.9px);
+            background-size: 130px 130px;
+            opacity: 0.25;
+            mix-blend-mode: screen;
+        }
+        .kraft-section > * {
+            position: relative;
+            z-index: 1;
+        }
+        .dark .kraft-section {
+            background-image: none;
+        }
+        .dark .kraft-section::before {
+            display: none;
+        }
+        .dark .kraft-section::after {
+            display: none;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans selection:bg-primary selection:text-white">
+<nav class="sticky top-0 left-0 right-0 z-50 w-full bg-white border-b border-slate-200 shadow-[0_10px_30px_-22px_rgba(15,17,21,0.35)] transition-all duration-500">
+<div class="relative w-full h-24 px-6 sm:px-10 lg:px-16">
+<div class="h-full flex items-center justify-between">
+<div class="flex items-center">
+<img alt="Atlas Pack Solutions Logo" class="h-14 w-auto" src="./assets/atlas-pack-logo.png"/>
+</div>
+<div class="md:hidden flex items-center justify-end">
+<button class="p-2 interactive-hover hover:scale-105 hover:shadow-lg active:scale-95 transition-all duration-300"><span class="material-icons-round interactive-hover">menu</span></button>
+</div>
+</div>
+<div class="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-10">
+<a class="font-nav text-[1.02rem] font-bold uppercase tracking-[0.08em] text-slate-900 hover:text-primary transition-colors interactive-hover" href="#process">Our Process</a>
+<a class="font-nav text-[1.02rem] font-bold uppercase tracking-[0.08em] text-slate-900 hover:text-primary transition-colors interactive-hover" href="#products">Products</a>
+<a class="font-nav text-[1.02rem] font-bold uppercase tracking-[0.08em] text-slate-900 hover:text-primary transition-colors interactive-hover" href="#faq">FAQ</a>
+<button class="font-nav bg-gradient-to-r from-primary to-orange-500 text-white px-9 py-3.5 text-sm font-bold uppercase tracking-[0.12em] rounded-full border border-orange-300/30 shadow-[0_14px_30px_-18px_rgba(228,142,46,0.85)] transition-all hover:from-orange-500 hover:to-orange-600 interactive-hover hover:scale-105 hover:shadow-[0_20px_38px_-16px_rgba(228,142,46,0.95)] active:scale-95 duration-300" onclick="toggleModal()">
+                        Get Quote
+                    </button>
+</div>
+</div>
+</nav>
+<header class="relative flex items-center py-36 lg:py-40 overflow-hidden bg-[#ffffff]">
+<div aria-hidden="true" class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden">
+<img alt="" class="atlas-hero-logo w-[85%] max-w-5xl" src="./assets/atlas-pack-logo.png"/>
+</div>
+<div class="absolute top-0 right-0 w-1/2 h-full bg-slate-200/30 dark:bg-slate-800/20 skew-x-[-12deg] translate-x-32 hidden lg:block z-0"></div>
+<div class="relative max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16 z-10">
+<div class="flex-1 reveal">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 font-bold tracking-widest uppercase text-xs mb-8 border border-orange-100 dark:border-orange-800">
+<span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span></span>
+                Industrial B2B Distribution
+            </div>
+<h1 class="font-display text-6xl md:text-8xl font-black leading-[0.9] mb-8 uppercase tracking-tighter">
+                Scale Your <span class="text-orange-500">Brand</span> with High-Volume Packaging.
+            </h1>
+<p class="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-xl leading-relaxed font-medium">
+                Premium manufacturing, global logistics, and reliable U.S. distribution for regional chains and food delivery enterprises.
+            </p>
+<div class="flex flex-col sm:flex-row gap-6">
+<button class="bg-primary text-white px-10 py-5 rounded-2xl font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 transition-all hover:bg-orange-600 hover:scale-105 shadow-xl shadow-orange-500/20 active:scale-95" onclick="toggleModal()">
+                    Start Your Quote
+                    <span class="material-icons-round">arrow_forward</span>
+</button>
+<a class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-orange-500 px-10 py-5 rounded-2xl font-bold uppercase tracking-widest text-sm text-center transition-all hover:scale-105 shadow-sm active:scale-95" href="#products">
+                    Explore Catalog
+                </a>
+</div>
+</div>
+<div class="flex-1 relative reveal delay-200">
+<div class="relative z-10 hero-product-stack">
+<div aria-hidden="true" class="hero-product-bw">
+<img alt="" src="./assets/hero-products-soleil.png"/>
+</div>
+<div class="hero-product-color animate-[float_6s_ease-in-out_infinite]">
+<img alt="Soleil custom packaging product lineup" src="./assets/hero-products-soleil.png"/>
+</div>
+</div>
+<div class="absolute -bottom-10 -left-10 bg-primary p-8 rounded-3xl shadow-2xl text-white z-20">
+<div class="text-4xl font-black font-display tracking-tighter">10M+</div>
+<div class="text-[10px] uppercase font-bold tracking-widest opacity-80">Units Monthly</div>
+</div>
+</div>
+</div>
+</header>
+<section class="kraft-section dark:bg-slate-900 py-36 lg:py-40">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+<div class="lg:col-span-4 reveal">
+<h2 class="font-display text-4xl font-bold uppercase tracking-tight font-extrabold">Premium Quality Showcase</h2>
+<div class="h-1 w-20 bg-primary mt-4"></div>
+<p class="mt-6 text-slate-500 dark:text-slate-400 max-w-md italic">Precision manufacturing meets high-end aesthetics for the modern restaurant enterprise.</p>
+</div>
+<div class="lg:col-span-8 reveal delay-100">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="aspect-[4/5] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden group">
+<img alt="Premium Packaging Detail" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5lW4rTNI7cfWLQvrbGuJ7dCvJ4eqBT4y9oli9KtSfDVpHWNR0e7lkFiTQ_S_o7lgxMnADhIv2yEHsGFkhzMFJu8kmH0s5CFGjNOSohdSBncOJAneCNqZxHmoJvxRllq1xBT0QkS6NgSA7ixeuj4RxbZA7EgKJD1kw1uzeMY6gin5tMgwywPcMWtLQkeIg9oZXyejJN4TyblqhuW1S8U0z-OCBmAsA_yy6owaf7QwEwzjYG_2PZqyEUB9WqLIV4ZOsIbgFtfNwWsc"/>
+</div>
+<div class="aspect-[4/5] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden group">
+<img alt="Industrial Design Showcase" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5KRqcx0tYc8Am615rbx3Bz2idU2K8NZU85hJj-mPVNmQS0C5kn3y8dM4_NEr89ioV-yNz5N7JaSEvFoOK4zjL-kBqm7oM73XUpDwyY7m2vyTZt1_RfTqxZ46e7lIEpms95oxC89INFGfaYMFLCSrdaCbYvbWivkAvg4bRdLoSPVS1zJ0Opo4LLDv5mWAbvAOo2yykFmN92QGuMATiUsDGHSejajmS_-_zti3NgKlxbo3o1kcKVRU2TVHac3_jmLLk_xv6FijP--U"/>
+</div>
+<div class="aspect-[4/5] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden group">
+<img alt="Branding Precision" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK74c3Lp9hXd1hnElJpPlY5Iy4RD9C-GqMyHsk1N8JEJ7krLlfQrwqo84uprx2ZkXhKZZv_0RGutG5DGKzBKhdYcObU-Cg60cCkUnDgjhfvjkV4tY6lhSQ1AtaX-4l-DI9I2MUL4_9eZ2IYn7kCizl6wL4usq_R3q6qknFtCKrB2sA0apXlloHY5muKqNOS-8g1rJLGieg-bFZ8yrEkf20dVlJlmJkbSKDuoksqQ03-96HrA0vNCGO-7tlo_XPht7tHv6d6kY1SC4"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-900 py-36 lg:py-40" id="process">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="reveal">
+<div class="text-center mb-16">
+<h2 class="font-display text-4xl font-bold uppercase inline-block border-b-4 border-primary pb-2 tracking-tight font-extrabold">Our Process</h2>
+<p class="mt-4 text-slate-500 dark:text-slate-400">Streamlined B2B workflow from concept to delivery.</p>
+</div>
+<div class="grid grid-cols-1 gap-8">
+<div class="group bg-white dark:bg-secondary p-6 lg:p-8 border border-slate-100 dark:border-slate-800 rounded-[2.5rem] shadow-premium hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+<div class="overflow-hidden rounded-2xl border border-slate-200/70 dark:border-slate-700">
+<img alt="Packaging catalog with multiple box models arranged side by side" class="w-full h-56 md:h-60 object-cover transition-transform duration-500 group-hover:scale-105" src="./assets/workflow-step-1-choose-model.png"/>
+</div>
+<div class="text-left">
+<h4 class="font-display text-xl font-bold uppercase mb-4"><span class="text-primary mr-2">01</span> Choose Model</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 italic leading-relaxed">Select from our standard or custom catalog of industry-proven models.</p>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-secondary p-6 lg:p-8 border border-slate-100 dark:border-slate-800 rounded-[2.5rem] shadow-premium hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+<div class="overflow-hidden rounded-2xl border border-slate-200/70 dark:border-slate-700 md:order-2">
+<img alt="Packaging design and customization workflow applying logo artwork" class="w-full h-56 md:h-60 object-cover transition-transform duration-500 group-hover:scale-105" src="./assets/workflow-step-2-customize.png"/>
+</div>
+<div class="text-left md:order-1">
+<h4 class="font-display text-xl font-bold uppercase mb-4"><span class="text-primary mr-2">02</span> Customize</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 italic leading-relaxed">Apply your brand identity with precision CMYK/PMS color matching.</p>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-secondary p-6 lg:p-8 border border-slate-100 dark:border-slate-800 rounded-[2.5rem] shadow-premium hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+<div class="overflow-hidden rounded-2xl border border-slate-200/70 dark:border-slate-700">
+<img alt="Industrial production line manufacturing packaging units" class="w-full h-56 md:h-60 object-cover transition-transform duration-500 group-hover:scale-105" src="./assets/workflow-step-3-production.png"/>
+</div>
+<div class="text-left">
+<h4 class="font-display text-xl font-bold uppercase mb-4"><span class="text-primary mr-2">03</span> Production</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 italic leading-relaxed">Strict QC manufacturing protocols in ISO-certified global facilities.</p>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-secondary p-6 lg:p-8 border border-slate-100 dark:border-slate-800 rounded-[2.5rem] shadow-premium hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+<div class="overflow-hidden rounded-2xl border border-slate-200/70 dark:border-slate-700 md:order-2">
+<img alt="Delivery truck and distribution logistics operations with palletized shipments" class="w-full h-56 md:h-60 object-cover transition-transform duration-500 group-hover:scale-105" src="./assets/workflow-step-4-delivery.png"/>
+</div>
+<div class="text-left md:order-1">
+<h4 class="font-display text-xl font-bold uppercase mb-4"><span class="text-primary mr-2">04</span> Delivery</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 italic leading-relaxed">Scheduled bulk distribution to your U.S. regional distribution centers.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="kraft-section dark:bg-background-dark py-36 lg:py-40">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="text-center mb-24 reveal">
+<h2 class="font-display text-4xl md:text-5xl font-black uppercase tracking-tight mb-6">The Atlas Advantage</h2>
+<p class="text-slate-500 max-w-2xl mx-auto text-lg font-medium">We provide the infrastructure and scale required for national restaurant expansion.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="reveal bg-white dark:bg-slate-800 p-10 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="w-14 h-14 bg-orange-50 dark:bg-orange-900/20 rounded-2xl flex items-center justify-center text-orange-600 mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons-round">verified</span>
+</div>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-tight">Bulk Pricing</h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Competitive tier-1 pricing structures optimized for high-volume enterprise orders.</p>
+</div>
+<div class="reveal bg-white dark:bg-slate-800 p-10 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="w-14 h-14 bg-orange-50 dark:bg-orange-900/20 rounded-2xl flex items-center justify-center text-orange-600 mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons-round">public</span>
+</div>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-tight">Global Strength</h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Leveraging strategic international manufacturing hubs for cost efficiency.</p>
+</div>
+<div class="reveal bg-white dark:bg-slate-800 p-10 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="w-14 h-14 bg-orange-50 dark:bg-orange-900/20 rounded-2xl flex items-center justify-center text-orange-600 mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons-round">local_shipping</span>
+</div>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-tight">U.S. Distribution</h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Logistics managed from stateside warehouses to your regional centers.</p>
+</div>
+<div class="reveal bg-white dark:bg-slate-800 p-10 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="w-14 h-14 bg-orange-50 dark:bg-orange-900/20 rounded-2xl flex items-center justify-center text-orange-600 mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons-round">high_quality</span>
+</div>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-tight">Quality Control</h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Multi-stage industrial inspection protocols before any cargo departure.</p>
+</div>
+<div class="reveal bg-white dark:bg-slate-800 p-10 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="w-14 h-14 bg-orange-50 dark:bg-orange-900/20 rounded-2xl flex items-center justify-center text-orange-600 mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons-round">eco</span>
+</div>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-tight">Eco-Friendly</h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Sustainable, food-safe materials available for ESG-conscious brands.</p>
+</div>
+<div class="reveal bg-white dark:bg-slate-800 p-10 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="w-14 h-14 bg-orange-50 dark:bg-orange-900/20 rounded-2xl flex items-center justify-center text-orange-600 mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons-round">palette</span>
+</div>
+<h3 class="text-xl font-bold uppercase mb-4 tracking-tight">Custom Branding</h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Complete flexibility on design, finishes, and high-speed industrial printing.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-900 py-36 lg:py-40" id="products">
+<div class="max-w-7xl mx-auto px-6 lg:px-8 reveal">
+<div class="mb-16">
+<h2 class="font-display text-4xl font-bold uppercase red-line-accent tracking-tight font-extrabold" style="text-shadow: 0 4px 12px rgba(0,0,0,0.1);">Industrial Grade Packaging Solutions</h2>
+<p class="mt-4 text-slate-500 dark:text-slate-400 max-w-2xl">High-durability materials designed for the rigors of high-volume delivery and regional logistics.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="group relative overflow-hidden bg-white dark:bg-secondary border border-slate-100 dark:border-slate-800 rounded-[2.5rem] shadow-lg transition-all duration-500 hover:shadow-premium hover:-translate-y-4 shadow-sm border-slate-200 dark:border-slate-800">
+<div class="aspect-video overflow-hidden rounded-t-3xl">
+<img alt="Takeout Boxes" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzdTVnuhZZg4eBVD_RAawXH2W48lYCBZM2NmYqBpyoPR-7ALEk5NS66jfDXa9M_gMBTrHU22CZdWZa_2xncsFqDhwYAv6ACtwXc4cFQKO5mPuP5GWiWDboklpkb_u6Jt2tTkJ9iOeFNv050V30k68_3qbDx0Ga-YWiSoJxYjcqfP4Mnf2DVXKeJwKFZZYH5IZkPTUDfS78teBkTsg_XHIQLeblHHfvFkdjYEwxnNBNma7CC7AhU_XepqtLHfjVlq8cz2_be99Y0iU"/>
+</div>
+<div class="p-6">
+<h3 class="font-display text-xl font-bold uppercase mb-2">Takeout Boxes</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Grease-resistant, heavy-duty paperboard for high-end burger and entree brands.</p>
+<button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all hover:bg-orange-600 active:scale-95 flex items-center justify-center gap-2 mt-4" onclick="toggleModal()">
+                            Configure Bulk Order <span class="material-icons-round text-sm group-hover:translate-x-1 transition-transform interactive-hover">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="group relative overflow-hidden bg-white dark:bg-secondary border border-slate-100 dark:border-slate-800 rounded-[2.5rem] shadow-lg transition-all duration-500 hover:shadow-premium hover:-translate-y-4 shadow-sm border-slate-200 dark:border-slate-800">
+<div class="aspect-video overflow-hidden rounded-t-3xl">
+<img alt="Clamshell Containers" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqmzAU7QCZhRi8HFeMn-hxBYiGTHp3I6ys2FJRGuhOt6RUloiCGZjE2KBNJA9F4r060umfIX85A41mIcwBI_SxrHjGIVsH5lB4MHEFpUwXzTcHbud6R51QDbJkFfA6bADcnf7y6oRgKX4jpziALVsnhG-_F0pnYF3wkHsG5mt60lBpZrLrBynfgtC4LQgrBCqS18ktZuo9PMiSgtNYKbyr8kZnblSbMpvP1pssF6aB7yUR5CvSQPkoHju-KWF_OyJzremSxdRTixQ"/>
+</div>
+<div class="p-6">
+<h3 class="font-display text-xl font-bold uppercase mb-2">Clamshell Containers</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Biodegradable sugarcane pulp or food-grade plastics with secure snap-locks.</p>
+<button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all hover:bg-orange-600 active:scale-95 flex items-center justify-center gap-2 mt-4" onclick="toggleModal()">
+                            Configure Bulk Order <span class="material-icons-round text-sm group-hover:translate-x-1 transition-transform interactive-hover">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="group relative overflow-hidden bg-white dark:bg-secondary border border-slate-100 dark:border-slate-800 rounded-[2.5rem] shadow-lg transition-all duration-500 hover:shadow-premium hover:-translate-y-4 shadow-sm border-slate-200 dark:border-slate-800">
+<div class="aspect-video overflow-hidden rounded-t-3xl">
+<img alt="Bowls" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4CF7-OKd-7QAW64ECYDcSQzrpmzB2tRD1xRqby_STUZ_WYnm3cggChOSr6uLOvf-tJLed64rKD-oqt1m1z2ViSc-5tH-lDdvhWpn0x0AvZPgYgJuhzmG4oQ3iot1Nz1ZOCHbVzqAVN2beY1StsxLUukg4Fq9TRsOXkm7dYIAXO5td7RdmHB91g4BRbD9iv43Fp7WSU75m_jzsgCuaUcK-Xgw2WLI-oeW-3lUc2KyUe9XlQlAoPRFFmBD3tl46Dopiid05a30s3us"/>
+</div>
+<div class="p-6">
+<h3 class="font-display text-xl font-bold uppercase mb-2">Signature Bowls</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Sturdy round containers for salads and hot bowls. Anti-fog lids available.</p>
+<button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all hover:bg-orange-600 active:scale-95 flex items-center justify-center gap-2 mt-4" onclick="toggleModal()">
+                            Configure Bulk Order <span class="material-icons-round text-sm group-hover:translate-x-1 transition-transform interactive-hover">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="group relative overflow-hidden bg-white dark:bg-secondary border border-slate-100 dark:border-slate-800 rounded-[2.5rem] shadow-lg transition-all duration-500 hover:shadow-premium hover:-translate-y-4 shadow-sm border-slate-200 dark:border-slate-800">
+<div class="aspect-video overflow-hidden rounded-t-3xl">
+<img alt="Cups &amp; Lids" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7AjJOZzFKjoNgMfKFvJK1WlKXN2yWDlOXSaN16PEPd1hJxupLgTbnctscvr7vg0UNyNx3pjBzOSe49IkdL9sxHFcbq-cY6D1M7_4lxVEEv170bV0zYSpfRp62la9KA-fJlDs5dVxHOjNPyHZiGTlzzggQGTUlc_0wJCi1FCTzWUEwDiVDBT7DShP1sfSavUg3zh9RjKot7T0eKPokakDzBSmTTo9Ds7L7ob_3dCRsgVPXBLbYa-mk3taZ3ag0y2OElQ5Z7WSJdGM"/>
+</div>
+<div class="p-6">
+<h3 class="font-display text-xl font-bold uppercase mb-2">Cups &amp; Lids</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Double-walled insulation and leak-proof PET or PLA lids for beverage chains.</p>
+<button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all hover:bg-orange-600 active:scale-95 flex items-center justify-center gap-2 mt-4" onclick="toggleModal()">
+                            Configure Bulk Order <span class="material-icons-round text-sm group-hover:translate-x-1 transition-transform interactive-hover">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="group relative overflow-hidden bg-white dark:bg-secondary border border-slate-100 dark:border-slate-800 rounded-[2.5rem] shadow-lg transition-all duration-500 hover:shadow-premium hover:-translate-y-4 shadow-sm border-slate-200 dark:border-slate-800">
+<div class="aspect-video overflow-hidden rounded-t-3xl">
+<img alt="Paper Bags" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_6ve1NO76EFTP6RyKquyJ2pdRiP2d3A5-FgjfBtJFxUTPDhkPqMGx1f-iUHwEEcEl5VfxxsR6qi8H2m9ktiF3b8gwbJlM3Ngh8vHS6RXKAPZo7Ve7RZqdPy0N2BT36pDRlUrEE6B_q_Y2QwXh5sd6UPxbJRRqMErBzW_N6kz0JKkoPhe_cPhL3_ClrKSX9-R8Rn2_fn0jvD1vIur3oIpeoVj4O66qA8nwXIgzN7rW4XW3ZDUyZ3vsZsN-tH-SxciRSE8mmQ8ewrc"/>
+</div>
+<div class="p-6">
+<h3 class="font-display text-xl font-bold uppercase mb-2">Paper Bags</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Twist-handle or SOS style. Heavyweight kraft with full-bleed printing.</p>
+<button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all hover:bg-orange-600 active:scale-95 flex items-center justify-center gap-2 mt-4" onclick="toggleModal()">
+                            Configure Bulk Order <span class="material-icons-round text-sm group-hover:translate-x-1 transition-transform interactive-hover">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="group relative overflow-hidden bg-white dark:bg-secondary border border-slate-100 dark:border-slate-800 rounded-[2.5rem] shadow-lg transition-all duration-500 hover:shadow-premium hover:-translate-y-4 shadow-sm border-slate-200 dark:border-slate-800">
+<div class="aspect-video overflow-hidden rounded-t-3xl">
+<img alt="Custom Printing" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnioo__ylC00263LmpwLR6h9BPiGsesrtnRi09hD5imFRt8Uf1K6sUkdAplZKMIC6nQWhbusOgPnWKa1mCmX7XXoP_481m0n0QeGtQ5-woTG6xgRpNG3UCXEIFaPCXjASm5Fi-FEbkJuHc4vWLQreIr3DydgRbybl3yBdgU4MLSSc7NvVxSLQikFMyqcv7K6w8y6X0FD-OoDRQJeXZQier0FIoanG5K1t_Gt02G6VG0sQ_NGj01f-Eko0QsfVqD0_Kvh2ppKkaVmU"/>
+</div>
+<div class="p-6">
+<h3 class="font-display text-xl font-bold uppercase mb-2">Custom Branded</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Our specialty. Full-color offset printing on all packaging surfaces.</p>
+<button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all hover:bg-orange-600 active:scale-95 flex items-center justify-center gap-2 mt-4" onclick="toggleModal()">
+                            Configure Bulk Order <span class="material-icons-round text-sm group-hover:translate-x-1 transition-transform interactive-hover">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="kraft-section dark:bg-background-dark py-36 lg:py-40">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-start">
+<div class="lg:col-span-7 reveal order-2 lg:order-1">
+<div class="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-40 grayscale mb-14 lg:mb-16">
+<img alt="Logo" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7QRSgkJwy83SlxqrEU2iOJkZlWnUmsRsOU2umv3l1MBattHUCz5dggZGxagqK-KIOG1JmnwmYdCTkWAw-6P7bIr7cpaYS2BpZ-aKuQaKDsAP5dYhpvGjcCpcYTOZkXi6XhEtJrwp1X6ti0ms9pTEk_Y1RBCHjSRkE7uH4tH4B8_uUJ1tuHxkIAX7SVPGezX5SRwibUcpbwF34yOAYnehKmhysqonf9N61ZpBV8z4nu4kHaBeJZPw5VlLphfHuoCfxMxcYTGaiKBw"/>
+<img alt="Logo" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7QRSgkJwy83SlxqrEU2iOJkZlWnUmsRsOU2umv3l1MBattHUCz5dggZGxagqK-KIOG1JmnwmYdCTkWAw-6P7bIr7cpaYS2BpZ-aKuQaKDsAP5dYhpvGjcCpcYTOZkXi6XhEtJrwp1X6ti0ms9pTEk_Y1RBCHjSRkE7uH4tH4B8_uUJ1tuHxkIAX7SVPGezX5SRwibUcpbwF34yOAYnehKmhysqonf9N61ZpBV8z4nu4kHaBeJZPw5VlLphfHuoCfxMxcYTGaiKBw"/>
+<img alt="Logo" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7QRSgkJwy83SlxqrEU2iOJkZlWnUmsRsOU2umv3l1MBattHUCz5dggZGxagqK-KIOG1JmnwmYdCTkWAw-6P7bIr7cpaYS2BpZ-aKuQaKDsAP5dYhpvGjcCpcYTOZkXi6XhEtJrwp1X6ti0ms9pTEk_Y1RBCHjSRkE7uH4tH4B8_uUJ1tuHxkIAX7SVPGezX5SRwibUcpbwF34yOAYnehKmhysqonf9N61ZpBV8z4nu4kHaBeJZPw5VlLphfHuoCfxMxcYTGaiKBw"/>
+<img alt="Logo" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7QRSgkJwy83SlxqrEU2iOJkZlWnUmsRsOU2umv3l1MBattHUCz5dggZGxagqK-KIOG1JmnwmYdCTkWAw-6P7bIr7cpaYS2BpZ-aKuQaKDsAP5dYhpvGjcCpcYTOZkXi6XhEtJrwp1X6ti0ms9pTEk_Y1RBCHjSRkE7uH4tH4B8_uUJ1tuHxkIAX7SVPGezX5SRwibUcpbwF34yOAYnehKmhysqonf9N61ZpBV8z4nu4kHaBeJZPw5VlLphfHuoCfxMxcYTGaiKBw"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-white dark:bg-slate-800 p-12 rounded-[2.5rem] border border-slate-200/50 shadow-sm">
+<p class="text-xl italic text-slate-700 dark:text-slate-300 mb-8">"Atlas Pack revolutionized our regional supply chain. Their consistency in high-volume production is unmatched in the industry."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-200"></div>
+<div>
+<div class="font-bold uppercase tracking-wider text-sm">Director of Operations</div>
+<div class="text-xs text-slate-500 uppercase font-bold tracking-widest">Regional Burger Group</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-12 rounded-[2.5rem] border border-slate-200/50 shadow-sm">
+<p class="text-xl italic text-slate-700 dark:text-slate-300 mb-8">"The transition from overseas sourcing to Atlas's managed distribution saved us 15% in logistics overhead while improving quality."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-200"></div>
+<div>
+<div class="font-bold uppercase tracking-wider text-sm">VP of Supply Chain</div>
+<div class="text-xs text-slate-500 uppercase font-bold tracking-widest">National Salad Chain</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 reveal order-1 lg:order-2 lg:pt-8">
+<p class="text-xs font-bold uppercase tracking-[0.3em] text-orange-600 mb-4">Partners in Scale</p>
+<h2 class="text-3xl font-bold uppercase tracking-tight max-w-md">Trusted by Industry Leaders</h2>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-900 py-36 lg:py-40" id="faq">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="font-display text-5xl md:text-6xl font-extrabold uppercase mb-4 italic text-primary tracking-tight font-extrabold">Frequent Inquiries</h2>
+<div class="h-1.5 w-24 bg-primary mx-auto"></div>
+</div>
+<div class="space-y-6">
+<details class="group bg-white dark:bg-slate-800/80 p-8 border border-slate-200 dark:border-slate-700 cursor-pointer hover:shadow-xl transition-all rounded-3xl overflow-hidden mb-4">
+<summary class="list-none flex justify-between items-center font-bold uppercase tracking-widest text-lg interactive-hover">
+                        What is your Minimum Order Quantity (MOQ)?
+                        <span class="material-icons-round transition-transform group-open:rotate-180 text-primary interactive-hover">expand_more</span>
+</summary>
+<p class="mt-6 text-slate-600 dark:text-slate-400 text-base leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-4">For standard items, MOQs start at 10,000 units. Custom printed orders typically require 25,000-50,000 units depending on the product complexity and material.</p>
+</details>
+<details class="group bg-white dark:bg-slate-800/80 p-8 border border-slate-200 dark:border-slate-700 cursor-pointer hover:shadow-xl transition-all rounded-3xl overflow-hidden mb-4">
+<summary class="list-none flex justify-between items-center font-bold uppercase tracking-widest text-lg interactive-hover">
+                        Do you provide design support?
+                        <span class="material-icons-round transition-transform group-open:rotate-180 text-primary interactive-hover">expand_more</span>
+</summary>
+<p class="mt-6 text-slate-600 dark:text-slate-400 text-base leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-4">Yes, our in-house engineering team provides dielines and layout templates. We can also assist in optimizing your artwork for high-speed industrial printing.</p>
+</details>
+<details class="group bg-white dark:bg-slate-800/80 p-8 border border-slate-200 dark:border-slate-700 cursor-pointer hover:shadow-xl transition-all rounded-3xl overflow-hidden mb-4">
+<summary class="list-none flex justify-between items-center font-bold uppercase tracking-widest text-lg interactive-hover">
+                        How are shipping costs handled?
+                        <span class="material-icons-round transition-transform group-open:rotate-180 text-primary interactive-hover">expand_more</span>
+</summary>
+<p class="mt-6 text-slate-600 dark:text-slate-400 text-base leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-4">We offer both DDP (Delivered Duty Paid) and FOB terms. Most of our clients prefer DDP where we handle all customs, duties, and final delivery to their door.</p>
+</details>
+<details class="group bg-white dark:bg-slate-800/80 p-8 border border-slate-200 dark:border-slate-700 cursor-pointer hover:shadow-xl transition-all rounded-3xl overflow-hidden mb-4">
+<summary class="list-none flex justify-between items-center font-bold uppercase tracking-widest text-lg interactive-hover">
+                        What are your payment terms?
+                        <span class="material-icons-round transition-transform group-open:rotate-180 text-primary interactive-hover">expand_more</span>
+</summary>
+<p class="mt-6 text-slate-600 dark:text-slate-400 text-base leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-4">Standard B2B terms are 50% deposit upon order and 50% upon bill of lading. Net-30 terms are available for established corporate accounts upon credit approval.</p>
+</details>
+</div>
+</div>
+</section>
+<section class="relative overflow-hidden bg-background-dark py-24 lg:py-28">
+<div class="absolute inset-0 bg-slate-950">
+<div class="absolute inset-0 opacity-20" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAT9jvzsw23u_ejqu6V_XehZqnEKRYPPinuXeZVvgl4FJYR838EQFgfUPNKS5Eb3lVaXPiyiZtPWeTj1LwEaMRt9gafgp2jboBt14zP1_4G39sMGtXKWKK9GBpb9bokXPW8p5IpTc_qQfJ1_nTJhIUX8aHqA0_JXeyeZWwCK7K9eYMfkJblEHcVQCx-9chheylZ6vKZ3VdUm0Pvgv6gI1veBQBWlVbAc3irYLzX5y8GK82yVxCbKIuyLasEe0Zl7OOPc0jJFd4FSIo')"></div>
+</div>
+<div class="relative max-w-5xl mx-auto px-6 text-center reveal">
+<h2 class="font-display text-5xl md:text-7xl font-black text-white uppercase mb-8 tracking-tighter">
+                Ready to Scale Your <br/> <span class="text-orange-500">Packaging Logistics?</span>
+</h2>
+<p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-medium">
+                Join the network of regional and national brands that rely on Atlas Pack Solutions for industrial-grade distribution.
+            </p>
+<button class="bg-primary text-white px-12 py-6 rounded-2xl font-bold uppercase tracking-[0.2em] text-sm hover:bg-orange-600 hover:scale-110 shadow-2xl shadow-orange-500/40 active:scale-95 transition-all duration-300" onclick="toggleModal()">
+                Request Industrial Quote
+            </button>
+<p class="mt-8 text-[10px] text-slate-500 uppercase tracking-widest font-bold">
+                Average response time: &lt; 24 hours
+            </p>
+</div>
+</section>
+<footer class="relative bg-secondary text-slate-400 py-24 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 md:col-span-1">
+<img alt="Logo" class="h-8 w-auto mb-6 brightness-0 invert opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7QRSgkJwy83SlxqrEU2iOJkZlWnUmsRsOU2umv3l1MBattHUCz5dggZGxagqK-KIOG1JmnwmYdCTkWAw-6P7bIr7cpaYS2BpZ-aKuQaKDsAP5dYhpvGjcCpcYTOZkXi6XhEtJrwp1X6ti0ms9pTEk_Y1RBCHjSRkE7uH4tH4B8_uUJ1tuHxkIAX7SVPGezX5SRwibUcpbwF34yOAYnehKmhysqonf9N61ZpBV8z4nu4kHaBeJZPw5VlLphfHuoCfxMxcYTGaiKBw"/>
+<p class="text-xs leading-relaxed">Specialized in large-scale food packaging manufacturing and international distribution for regional and national restaurant chains.</p>
+</div>
+<div>
+<h5 class="text-white font-bold uppercase text-xs tracking-widest mb-6">Operations</h5>
+<ul class="text-xs space-y-4">
+<li><a class="hover:text-primary interactive-hover" href="#">Manufacturing Hubs</a></li>
+<li><a class="hover:text-primary interactive-hover" href="#">Quality Control</a></li>
+<li><a class="hover:text-primary interactive-hover" href="#">Logistics Tracking</a></li>
+<li><a class="hover:text-primary interactive-hover" href="#">Sustainability Policy</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white font-bold uppercase text-xs tracking-widest mb-6">Corporate</h5>
+<ul class="text-xs space-y-4">
+<li><a class="hover:text-primary interactive-hover" href="#">About Us</a></li>
+<li><a class="hover:text-primary interactive-hover" href="#">Client Portals</a></li>
+<li><a class="hover:text-primary interactive-hover" href="#">Investor Relations</a></li>
+<li><a class="hover:text-primary interactive-hover" href="#">Contact Support</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white font-bold uppercase text-xs tracking-widest mb-6">Headquarters</h5>
+<p class="text-xs leading-relaxed">
+                        1400 Industrial Way<br/>
+                        Chicago, IL 60601<br/>
+                        United States<br/><br/>
+                        (800) 555-PACK<br/>
+                        info@atlaspacksolutions.com
+                    </p>
+</div>
+</div>
+<div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-[0.2em]">
+<p>© 2024 Atlas Pack Solutions. All rights reserved.</p>
+<div class="flex gap-8">
+<a class="hover:text-primary interactive-hover" href="#">Terms of Service</a>
+<a class="hover:text-primary interactive-hover" href="#">Privacy Policy</a>
+<a class="hover:text-primary interactive-hover" href="#">Cookie Settings</a>
+</div>
+</div>
+</div>
+</footer>
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-4" id="quoteModal">
+<div class="modal-overlay absolute inset-0" onclick="toggleModal()"></div>
+<div class="relative bg-white/90 dark:bg-secondary/90 backdrop-blur-xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in duration-300 rounded-[2rem] border border-white/20 shadow-[0_35px_100px_-15px_rgba(0,0,0,0.5)]">
+<div class="bg-primary/90 backdrop-blur-md p-8 flex justify-between items-center">
+<h3 class="text-white font-display text-2xl font-bold uppercase tracking-wide">Request Industrial Quote</h3>
+<button class="text-white hover:rotate-90 transition-transform hover:scale-105 hover:shadow-lg active:scale-95 transition-all duration-300" onclick="toggleModal()">
+<span class="material-icons-round interactive-hover">close</span>
+</button>
+</div>
+<form class="p-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Company Name</label>
+<input class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl" placeholder="e.g. Regional Burger Co." type="text"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Contact Name</label>
+<input class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl" placeholder="Full Name" type="text"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Work Email</label>
+<input class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl" placeholder="name@company.com" type="email"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Phone Number</label>
+<input class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Packaging Type</label>
+<select class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl">
+<option>Select Type</option>
+<option>Takeout Boxes</option>
+<option>Clamshell Containers</option>
+<option>Bowls &amp; Lids</option>
+<option>Cups &amp; Lids</option>
+<option>Paper Bags</option>
+<option>Mixed Full Suite</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Estimated Quantity</label>
+<input class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl" placeholder="e.g. 50,000 units" type="text"/>
+</div>
+<div class="md:col-span-1">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Custom Printing?</label>
+<div class="flex gap-4 items-center h-full">
+<label class="flex items-center gap-2 cursor-pointer text-sm">
+<input class="text-primary focus:ring-primary" name="custom" type="radio"/> Yes
+                        </label>
+<label class="flex items-center gap-2 cursor-pointer text-sm">
+<input class="text-primary focus:ring-primary" name="custom" type="radio"/> No
+                        </label>
+</div>
+</div>
+<div class="md:col-span-1">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Delivery Location</label>
+<input class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl" placeholder="City, State" type="text"/>
+</div>
+<div class="md:col-span-2">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Additional Details</label>
+<textarea class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl" placeholder="Special requirements, material preferences..." rows="3"></textarea>
+</div>
+<div class="md:col-span-2">
+<button class="w-full bg-primary text-white font-bold uppercase tracking-[0.2em] py-5 rounded-xl transition-all hover:bg-orange-600 hover:shadow-lg active:scale-95 shadow-primary/20 hover:scale-105 hover:shadow-lg active:scale-95 transition-all duration-300" type="submit">
+                        Submit Quote Request
+                    </button>
+<p class="text-[10px] text-center text-slate-400 mt-4 uppercase">Our logistics desk will respond within 48 business hours.</p>
+</div>
+</form>
+</div>
+</div>
+<script>
+        function toggleModal() {
+            const modal = document.getElementById('quoteModal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+        const revealElements = document.querySelectorAll('.reveal');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+            revealElements.forEach((el) => el.classList.add('active'));
+        } else {
+            const observerOptions = {
+                threshold: 0.12,
+                rootMargin: '0px 0px -8% 0px'
+            };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach((el, index) => {
+                if (!el.classList.contains('delay-100') && !el.classList.contains('delay-200')) {
+                    el.style.transitionDelay = `${Math.min((index % 4) * 70, 210)}ms`;
+                }
+                observer.observe(el);
+            });
+        }
+    </script>
+</body></html>
