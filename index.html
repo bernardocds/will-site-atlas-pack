@@ -361,9 +361,8 @@
         </div>
     </header>
     
-    <section class="bg-slate-50 dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800 py-32 lg:py-40 relative overflow-hidden">
-        <!-- Abstract background pattern -->
-        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 24px 24px;"></div>
+    <section class="kraft-section dark:bg-slate-900 py-32 lg:py-40 relative overflow-hidden">
+        
         
         <div class="max-w-6xl mx-auto px-6 lg:px-12 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -1028,109 +1027,228 @@
             </div>
         </div>
     </footer>
+    
     <div class="fixed inset-0 z-[100] hidden items-center justify-center p-4" id="quoteModal">
         <div class="modal-overlay absolute inset-0" onclick="toggleModal()"></div>
-        <div
-            class="relative bg-white/90 dark:bg-secondary/90 backdrop-blur-xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in duration-300 rounded-[2rem] border border-white/20 shadow-[0_35px_100px_-15px_rgba(0,0,0,0.5)]">
-            <div class="bg-primary/90 backdrop-blur-md p-8 flex justify-between items-center">
-                <h3 class="text-white font-display text-2xl font-bold uppercase tracking-wide">Request Industrial Quote
-                </h3>
-                <button
-                    class="text-white hover:rotate-90 transition-transform hover:scale-105 hover:shadow-lg active:scale-95 transition-all duration-300"
-                    onclick="toggleModal()">
-                    <span class="material-icons-round interactive-hover">close</span>
-                </button>
-            </div>
-            <form class="p-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Company
-                        Name</label>
-                    <input
-                        class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl"
-                        placeholder="e.g. Regional Burger Co." type="text" />
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Contact
-                        Name</label>
-                    <input
-                        class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl"
-                        placeholder="Full Name" type="text" />
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Work
-                        Email</label>
-                    <input
-                        class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl"
-                        placeholder="name@company.com" type="email" />
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Phone
-                        Number</label>
-                    <input
-                        class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl"
-                        placeholder="+1 (555) 000-0000" type="tel" />
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Packaging
-                        Type</label>
-                    <select
-                        class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl">
-                        <option>Select Type</option>
-                        <option>Takeout Boxes</option>
-                        <option>Clamshell Containers</option>
-                        <option>Bowls &amp; Lids</option>
-                        <option>Cups &amp; Lids</option>
-                        <option>Paper Bags</option>
-                        <option>Mixed Full Suite</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Estimated
-                        Quantity</label>
-                    <input
-                        class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl"
-                        placeholder="e.g. 50,000 units" type="text" />
-                </div>
-                <div class="md:col-span-1">
-                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Custom
-                        Printing?</label>
-                    <div class="flex gap-4 items-center h-full">
-                        <label class="flex items-center gap-2 cursor-pointer text-sm">
-                            <input class="text-primary focus:ring-primary" name="custom" type="radio" /> Yes
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer text-sm">
-                            <input class="text-primary focus:ring-primary" name="custom" type="radio" /> No
-                        </label>
+        <div class="relative bg-white/95 dark:bg-secondary/95 backdrop-blur-xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in duration-300 rounded-[2rem] border border-white/20 shadow-[0_35px_100px_-15px_rgba(0,0,0,0.5)] flex flex-col max-h-[90vh]">
+            
+            <!-- Header -->
+            <div class="bg-primary/95 backdrop-blur-md p-6 md:p-8 flex flex-col gap-4 relative shrink-0">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-white font-display text-2xl font-bold uppercase tracking-wide">Get Your Quote</h3>
+                        <p class="text-white/80 text-xs tracking-widest uppercase mt-1" id="stepIndicatorText">Step 1 of 2: Project Details</p>
                     </div>
-                </div>
-                <div class="md:col-span-1">
-                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Delivery
-                        Location</label>
-                    <input
-                        class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl"
-                        placeholder="City, State" type="text" />
-                </div>
-                <div class="md:col-span-2">
-                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Additional
-                        Details</label>
-                    <textarea
-                        class="w-full bg-slate-100/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl"
-                        placeholder="Special requirements, material preferences..." rows="3"></textarea>
-                </div>
-                <div class="md:col-span-2">
-                    <button
-                        class="w-full bg-primary text-white font-bold uppercase tracking-[0.2em] py-5 rounded-xl transition-all hover:bg-orange-600 hover:shadow-lg active:scale-95 shadow-primary/20 hover:scale-105 hover:shadow-lg active:scale-95 transition-all duration-300"
-                        type="submit">
-                        Submit Quote Request
+                    <button class="text-white hover:rotate-90 transition-transform hover:scale-105 hover:shadow-lg active:scale-95 duration-300" onclick="toggleModal()">
+                        <span class="material-icons-round interactive-hover">close</span>
                     </button>
-                    <p class="text-[10px] text-center text-slate-400 mt-4 uppercase">Our logistics desk will respond
-                        within 48 business hours.</p>
                 </div>
-            </form>
+                <!-- Progress Bar -->
+                <div class="w-full bg-orange-900/40 rounded-full h-1.5 overflow-hidden">
+                    <div class="bg-white h-1.5 rounded-full transition-all duration-500 ease-out w-1/2" id="formProgressBar"></div>
+                </div>
+            </div>
+
+            <!-- Form Content container with scrolling -->
+            <div class="overflow-y-auto w-full">
+                <form class="p-6 md:p-10" id="multiStepQuoteForm" onsubmit="event.preventDefault(); submitQuote();">
+                    
+                    <!-- STEP 1: Project Details -->
+                    <div id="step1" class="transition-all duration-500">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="md:col-span-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Primary Product Need <span class="text-primary">*</span></label>
+                                <select required class="w-full bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl shadow-sm cursor-pointer hover:border-primary/50 transition-colors">
+                                    <option value="" disabled selected>Select Product Category...</option>
+                                    <option>Hot Cups & Lids</option>
+                                    <option>Cold Cups (PET/PLA) & Lids</option>
+                                    <option>Food Boxes & Clamshells</option>
+                                    <option>Paper Takeout Bags</option>
+                                    <option>Full Suite Transition (All Items)</option>
+                                    <option>Other / Not Sure</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Estimated Monthly Volume <span class="text-primary">*</span></label>
+                                <select required class="w-full bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl shadow-sm cursor-pointer hover:border-primary/50 transition-colors">
+                                    <option value="" disabled selected>Select Volume...</option>
+                                    <option>Under 10,000 units</option>
+                                    <option>10,000 - 50,000 units</option>
+                                    <option>50,000 - 100,000 units</option>
+                                    <option>100,000+ units</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Do You Need Custom Print?</label>
+                                <select class="w-full bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl shadow-sm cursor-pointer hover:border-primary/50 transition-colors">
+                                    <option>Yes, we have our logo/artwork ready</option>
+                                    <option>Yes, but we need branding help</option>
+                                    <option selected>No, we need blank kraft/white stock</option>
+                                </select>
+                            </div>
+
+                            <div class="md:col-span-2 mt-4">
+                                <button type="button" onclick="goToStep(2)" class="w-full bg-primary text-white font-bold uppercase tracking-[0.2em] py-5 rounded-xl transition-all hover:bg-orange-600 hover:shadow-lg active:scale-95 shadow-primary/20 hover:scale-105 duration-300 flex items-center justify-center gap-2">
+                                    Continue to Details <span class="material-icons-round text-lg">arrow_forward</span>
+                                </button>
+                                <p class="text-[10px] text-center text-slate-400 mt-4 uppercase">Takes ~30 seconds to complete</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Contact Info (Hidden initially) -->
+                    <div id="step2" class="hidden opacity-0 transition-opacity duration-500">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            
+                            <!-- Back Button -->
+                            <div class="md:col-span-2 flex items-center mb-2">
+                                <button type="button" onclick="goToStep(1)" class="text-slate-400 hover:text-primary transition-colors flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest">
+                                    <span class="material-icons-round text-base">arrow_back</span> Back to Project
+                                </button>
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Full Name <span class="text-primary">*</span></label>
+                                <input required class="w-full bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl shadow-sm hover:border-primary/50 transition-colors" placeholder="John Doe" type="text" />
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Company Name <span class="text-primary">*</span></label>
+                                <input required class="w-full bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl shadow-sm hover:border-primary/50 transition-colors" placeholder="e.g. Regional Burger Co." type="text" />
+                            </div>
+                            
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Work Email <span class="text-primary">*</span></label>
+                                <input required class="w-full bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl shadow-sm hover:border-primary/50 transition-colors" placeholder="name@company.com" type="email" />
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Phone Number <span class="text-primary">*</span></label>
+                                <input required class="w-full bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl shadow-sm hover:border-primary/50 transition-colors" placeholder="+1 (555) 000-0000" type="tel" />
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Delivery State / Zip Code</label>
+                                <input class="w-full bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm p-4 rounded-xl shadow-sm hover:border-primary/50 transition-colors" placeholder="e.g. TX 75001" type="text" />
+                            </div>
+
+                            <div class="md:col-span-2 mt-4">
+                                <button type="submit" class="w-full bg-primary text-white font-bold uppercase tracking-[0.2em] py-5 rounded-xl transition-all hover:bg-orange-600 hover:shadow-lg active:scale-95 shadow-primary/20 hover:scale-105 duration-300 flex items-center justify-center gap-2">
+                                    Submit Quote Request <span class="material-icons-round text-lg">check_circle</span>
+                                </button>
+                                <p class="text-[10px] text-center text-slate-400 mt-4 uppercase">Our logistics desk will respond within 48 business hours.</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Success Message (Hidden) -->
+            <div id="quoteSuccess" class="hidden flex-col items-center justify-center py-16 px-8 text-center bg-white dark:bg-slate-800">
+                <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6 shadow-inner">
+                    <span class="material-icons-round text-4xl">task_alt</span>
+                </div>
+                <h3 class="font-display text-3xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4">Request Received</h3>
+                <p class="text-slate-500 dark:text-slate-400 max-w-sm mb-8">Thank you! Your quote request has been routed to our supply chain experts. We will contact you at the provided email shortly.</p>
+                <button onclick="toggleModal()" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Close Window</button>
+            </div>
+
         </div>
     </div>
     <script>
+        
+        // Form Quiz Logic
+        function goToStep(stepNumber) {
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const formProgressBar = document.getElementById('formProgressBar');
+            const stepIndicatorText = document.getElementById('stepIndicatorText');
+
+            if (stepNumber === 1) {
+                step2.classList.add('hidden');
+                step2.classList.remove('opacity-100');
+                
+                step1.classList.remove('hidden');
+                // Small delay to allow display block to render before opacity fades in
+                setTimeout(() => step1.classList.remove('opacity-0'), 50);
+                
+                formProgressBar.style.width = '50%';
+                stepIndicatorText.innerText = 'Step 1 of 2: Project Details';
+            } else if (stepNumber === 2) {
+                // Basic validation for step 1
+                const selects = step1.querySelectorAll('select[required]');
+                let isValid = true;
+                selects.forEach(s => {
+                    if(!s.value) {
+                        s.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        s.classList.remove('border-red-500');
+                    }
+                });
+                
+                if(!isValid) return alert("Please select your project requirements first.");
+
+                step1.classList.add('opacity-0');
+                setTimeout(() => {
+                    step1.classList.add('hidden');
+                    step2.classList.remove('hidden');
+                    setTimeout(() => step2.classList.remove('opacity-0'), 50);
+                }, 300); // Wait for fade out
+                
+                formProgressBar.style.width = '100%';
+                stepIndicatorText.innerText = 'Step 2 of 2: Your Information';
+            }
+        }
+
+        function submitQuote() {
+            // Mock submission
+            const form = document.getElementById('multiStepQuoteForm');
+            const success = document.getElementById('quoteSuccess');
+            const header = document.querySelector('#quoteModal .bg-primary\\/95');
+            
+            form.classList.add('hidden');
+            if(header) header.classList.add('hidden');
+            
+            success.classList.remove('hidden');
+            success.classList.add('flex');
+            
+            // Reset form completely after 3 seconds for the next time it's opened
+            setTimeout(() => {
+                form.reset();
+                goToStep(1);
+            }, 500);
+        }
+
+        function resetModalState() {
+            const form = document.getElementById('multiStepQuoteForm');
+            const success = document.getElementById('quoteSuccess');
+            const header = document.querySelector('#quoteModal .bg-primary\\/95');
+            
+            if(form && success) {
+                success.classList.add('hidden');
+                success.classList.remove('flex');
+                form.classList.remove('hidden');
+                if(header) header.classList.remove('hidden');
+                goToStep(1);
+            }
+        }
+
         function toggleModal() {
+            const modal = document.getElementById('quoteModal');
+            const isHidden = modal.classList.contains('hidden');
+            
+            if (isHidden) {
+                resetModalState(); // Ensure pristine state when opening
+            }
+            
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+        
+        // Remove old toggleModal to prevent duplicate
+        /* 
+        
             const modal = document.getElementById('quoteModal');
             modal.classList.toggle('hidden');
             modal.classList.toggle('flex');
