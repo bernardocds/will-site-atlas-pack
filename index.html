@@ -1415,6 +1415,9 @@
             <!-- Form Content container with scrolling -->
             <div class="overflow-y-auto w-full">
                 <form class="p-6 md:p-10" id="multiStepQuoteForm" onsubmit="event.preventDefault(); submitQuote();">
+                    <input type="hidden" name="_subject" value="New Lead: Atlas Pack Solutions">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
 
                     <!-- STEP 1: Project Details -->
                     <div id="step1" class="transition-all duration-500">
@@ -1626,8 +1629,8 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="material-icons-round animate-spin text-lg">sync</span> Sending...';
 
-            // Send to Formspree
-            fetch('https://formspree.io/f/willyaninacionovelin@gmail.com', {
+            // Send to FormSubmit.co
+            fetch('https://formsubmit.co/ajax/willyaninacionovelin@gmail.com', {
                 method: 'POST',
                 body: formData,
                 headers: { 'Accept': 'application/json' }
